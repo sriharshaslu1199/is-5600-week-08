@@ -38,4 +38,38 @@ app.put('/orders/:id', api.editOrder)
  * so we can use it during our testing
  */
 module.exports = app.listen(port, () => console.log(`Server listening on port ${port}`))
+// tests/app.test.js
+const request = require('supertest');
+const app = require('../app.js');
+
+describe('The Express Server', () => {
+  beforeAll(done => {
+    done()
+  })
+
+  test('should return response', async () => {
+    const res = await request(app)
+      .get('/');
+    expect(res.statusCode).toEqual(200);
+  });
+});
+// tests/app.test.js
+describe('The Express Server', () => {
+  beforeAll(done => {
+    done()
+  })
+
+  test('should return response', async () => {
+    const res = await request(app)
+      .get('/');
+    expect(res.statusCode).toEqual(200);
+
+  });
+
+  test('should respond at /products', async () => {
+    const res = await request(app)
+      .get('/products')
+    expect(res.statusCode).toEqual(200);
+  });
+});
 
